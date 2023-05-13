@@ -23,6 +23,8 @@ openMouth = "open.png"
 closedMouth = "close.png"
 backgroundColor = "#000000"
 
+voiceID = ""
+
 shakeAmount = "2"
 
 display_width = 512
@@ -44,6 +46,7 @@ class _TTS:
     
     def __init__(self):
         self.engine = pyttsx3.init()
+        self.engine.setProperty("voice", voiceID)
     
     def start(self,text_):
         self.engine.say(text_)
@@ -63,6 +66,7 @@ def createConfig():
     config.write(configLine("shakeAmount",shakeAmount,"This determines how much the beeper will shake when talking"))
     config.write(configLine("backgroundColor",backgroundColor,"This determines the Background color for use with Greenscreening"))
     config.write(configLine("pointId",pointId,"The name of the point redeem, case sensitive"))
+    config.write(configLine("voiceID",voiceID,"This is the ID of a TTS voice you want to use. To figure out what you have, run the TestTTSVoices.py script."))
     config.close()
 
 def readConfig():
@@ -78,6 +82,7 @@ def readLine(line):
     global channelName
     global shakeAmount
     global backgroundColor
+    global voiceID
     splitLine = line.split("=")
     
     if splitLine[0] == "twitchAppId":
@@ -96,6 +101,8 @@ def readLine(line):
         shakeAmount = splitLine[1].replace("\n","")
     if splitLine[0] == "pointId":
         pointId = splitLine[1].replace("\n","")
+    if splitLine[0] == "voiceID":
+        voiceID = splitLine[1].replace("\n","")
 
 async def on_ready(ready_event: EventData):
     print("Bot is running! Joining channels.")
