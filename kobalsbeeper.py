@@ -84,25 +84,26 @@ def readLine(line):
     global backgroundColor
     global voiceID
     splitLine = line.split("=")
-    
-    if splitLine[0] == "twitchAppId":
-        twitchAppId = splitLine[1].replace("\n","")
-    if splitLine[0] == "twitchAppSecret":
-        twitchAppSecret = splitLine[1].replace("\n","")
-    if splitLine[0] == "openMouth":
-        openMouth = splitLine[1].replace("\n","")
-    if splitLine[0] == "closedMouth":
-        closedMouth = splitLine[1].replace("\n","")
-    if splitLine[0] == "channelName":
-        channelName = splitLine[1].replace("\n","")
-    if splitLine[0] == "backgroundColor":
-        backgroundColor = splitLine[1].replace("\n","")
-    if splitLine[0] == "shakeAmount":
-        shakeAmount = splitLine[1].replace("\n","")
-    if splitLine[0] == "pointId":
-        pointId = splitLine[1].replace("\n","")
-    if splitLine[0] == "voiceID":
-        voiceID = splitLine[1].replace("\n","")
+
+    match splitLine[0]:
+        case "twitchAppId":
+            twitchAppId = splitLine[1].replace("\n","")
+        case "twitchAppSecret":
+            twitchAppSecret = splitLine[1].replace("\n","")
+        case "openMouth":
+            openMouth = splitLine[1].replace("\n","")
+        case "closedMouth":
+            closedMouth = splitLine[1].replace("\n","")
+        case "channelName":
+            channelName = splitLine[1].replace("\n","")
+        case "backgroundColor":
+            backgroundColor = splitLine[1].replace("\n","")
+        case "shakeAmount":
+            shakeAmount = splitLine[1].replace("\n","")
+        case "pointId":
+            pointId = splitLine[1].replace("\n","")
+        case "voiceID":
+            voiceID = splitLine[1].replace("\n","")
 
 async def on_ready(ready_event: EventData):
     print("Bot is running! Joining channels.")
