@@ -129,7 +129,7 @@ async def callback_point(uuid: UUID, data: dict) -> None:
 try:
     config = open("config.txt","r+")
 except:
-    print("This is the first time you're running this! As such, you will have to enter your info into the config before the bot will work.\nAttempting to create config...
+    print("This is the first time you're running this! As such, you will have to enter your info into the config before the bot will work.\nAttempting to create config...")
     createConfig()
     print("Config created! Please input your data.")
     input("Press Any Key...")
