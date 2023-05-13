@@ -71,6 +71,7 @@ def createConfig():
 
 def readConfig():
     config = open("config.txt","r")
+    print("Reading config file")
     for x in config:
         readLine(x)
 
@@ -88,22 +89,31 @@ def readLine(line):
     match splitLine[0]:
         case "twitchAppId":
             twitchAppId = splitLine[1].replace("\n","")
+            print(splitLine[0]+" Grabbed")
         case "twitchAppSecret":
             twitchAppSecret = splitLine[1].replace("\n","")
+            print(splitLine[0]+" Grabbed")
         case "openMouth":
             openMouth = splitLine[1].replace("\n","")
+            print(splitLine[0]+" Grabbed")
         case "closedMouth":
             closedMouth = splitLine[1].replace("\n","")
+            print(splitLine[0]+" Grabbed")
         case "channelName":
             channelName = splitLine[1].replace("\n","")
+            print(splitLine[0]+" Grabbed")
         case "backgroundColor":
             backgroundColor = splitLine[1].replace("\n","")
+            print(splitLine[0]+" Grabbed")
         case "shakeAmount":
             shakeAmount = splitLine[1].replace("\n","")
+            print(splitLine[0]+" Grabbed")
         case "pointId":
             pointId = splitLine[1].replace("\n","")
+            print(splitLine[0]+" Grabbed")
         case "voiceID":
             voiceID = splitLine[1].replace("\n","")
+            print(splitLine[0]+" Grabbed")
 
 async def on_ready(ready_event: EventData):
     print("Bot is running! Joining channels.")
@@ -128,7 +138,7 @@ async def callback_whisper(uuid: UUID, data: dict) -> None:
         saySmth(dataParse.get("body"))
         
 async def callback_point(uuid: UUID, data: dict) -> None:
-    dataParse = data.get("reward")
+    dataParse = data.get("data").get("reward")
     if data.get("type") == "reward-redeemed":
         if dataParse.get("title") == pointId:
             print(dataParse.get("prompt"))
@@ -195,6 +205,8 @@ async def run():
     
     clock = pygame.time.Clock()
     run = True
+    
+    print("Bot ready for beeping!")
     
     while run:
         global talking
