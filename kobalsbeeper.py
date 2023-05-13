@@ -62,7 +62,7 @@ def createConfig():
     config.write(configLine("closedMouth",closedMouth,"This is the name + extension of the Closed Mouth image, in the same folder as the file"))
     config.write(configLine("shakeAmount",shakeAmount,"This determines how much the beeper will shake when talking"))
     config.write(configLine("backgroundColor",backgroundColor,"This determines the Background color for use with Greenscreening"))
-    config.write(configLine("pointId",pointId,"The name of the point redeem"))
+    config.write(configLine("pointId",pointId,"The name of the point redeem, case sensitive"))
     config.close()
 
 def readConfig():
@@ -129,6 +129,7 @@ async def callback_point(uuid: UUID, data: dict) -> None:
 try:
     config = open("config.txt","r+")
 except:
+    print("This is the first time you're running this! As such, you will have to enter your info into the config before the bot will work.\nAttempting to create config...
     createConfig()
     print("Config created! Please input your data.")
     input("Press Any Key...")
